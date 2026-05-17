@@ -1,117 +1,109 @@
 # Ethics Multi-task NLP
-
 ## Overview
-
-This repository contains the code and experimental resources for a multi-task BERT framework for ethical text classification and interpretability analysis. The framework jointly models multiple ethical reasoning dimensions derived from the ETHICS benchmark, including commonsense morality, justice, deontology, virtue ethics, and utilitarianism. The project also incorporates attention visualization and SHAP-based interpretability analysis for transparent ethical prediction.
-
+This repository contains the implementation of a multi-task transformer framework for ethical text classification and interpretability analysis.
+The framework is designed to jointly model multiple ethical reasoning dimensions derived from the ETHICS benchmark, including:
+* Commonsense morality
+* Justice
+* Deontology
+* Virtue ethics
+* Utilitarianism
+The proposed framework integrates:
+* Multi-task learning
+* Transformer-based representations (BERT)
+* Attention visualization
+* SHAP interpretability analysis
 ---
-
 ## Dataset Information
-
-This project is based on the ETHICS benchmark proposed by Hendrycks et al.
-
-Original ETHICS benchmark repository:
+The experiments are based on the ETHICS benchmark proposed by Hendrycks et al.
+Original ETHICS dataset repository:
 https://github.com/hendrycks/ethics
-
-The reconstructed dataset used in this study follows the original task definitions, annotation schema, and label structure described in the official benchmark and associated publication.
-
+The dataset used in this study was reconstructed from the publicly available benchmark resources, annotation schema, and task definitions provided in the official ETHICS repository and publication.
+The reconstructed dataset preserves:
+* Ethical task categories
+* Annotation schema
+* Label structure
+Due to licensing and third-party data considerations, the original dataset is not redistributed in this repository.
+Additional dataset description is provided in:
+```text
+data/README_DATASET.txt
+```
 ---
-
-## Environment
-
-- Python 3.10
-- PyTorch
-- Transformers
-- NumPy
-- Pandas
-- Scikit-learn
-- SHAP
-- Matplotlib
-
+## Code Information
+Main project structure:
+```text
+scripts/                  training and evaluation scripts
+models/                   saved model checkpoints
+outputs/                  generated predictions and figures
+results/                  experimental results
+data/                     reconstructed dataset information
+```
+Important files:
+```text
+plot_figure5_clean.py     Figure generation script
+requirements.txt          Python dependency list
+README.md                 Project description
+```
 ---
-
-## Project Structure
-
-- `scripts/` : training and evaluation scripts
-- `models/` : saved model checkpoints
-- `outputs/` : generated prediction outputs and figures
-- `results/` : experimental results and evaluation metrics
-- `plot_figure5_clean.py` : script for generating Figure 5
-- `Figure5_clean.png` / `Figure5_clean.pdf` : generated figure files
-
----
-
-## Installation
-
-Install required dependencies using:
-
-pip install -r requirements.txt
-
----
-
-## Usage
-
-Train the multi-task BERT model:
-
-python train.py
-
-Evaluate the trained model:
-
-python evaluate.py
-
-Generate SHAP interpretability analysis:
-
-python shap_analysis.py
-
----
-
 ## Requirements
-
-The complete dependency list is provided in `requirements.txt`.
-
-Example dependencies include:
-
-- torch
-- transformers
-- numpy
-- pandas
-- scikit-learn
-- shap
-- matplotlib
-
+The project was implemented using:
+* Python 3.10
+* PyTorch
+* Transformers
+* NumPy
+* Pandas
+* Scikit-learn
+* Matplotlib
+* SHAP
+Install dependencies using:
+```bash
+pip install -r requirements.txt
+```
 ---
-
+## Usage Instructions
+Example training command:
+```bash
+python train_multitask_bert.py
+```
+Example evaluation command:
+```bash
+python evaluate_model.py
+```
+Example figure generation command:
+```bash
+python plot_figure5_clean.py
+```
+---
 ## Methodology
-
-The proposed framework employs a shared BERT-base transformer encoder with multi-task learning for ethical text classification. Each ethical dimension is modeled as an independent Bernoulli prediction task using sigmoid-based multi-label classification.
-
-The framework integrates:
-
-- Shared transformer representation learning
-- Multi-task classification
-- Attention-based interpretability
-- SHAP token attribution analysis
-- Ablation experiments across ethical tasks
-
-Performance evaluation includes accuracy, precision, recall, macro F1-score, and ROC-AUC.
-
+The proposed framework uses a shared BERT encoder combined with task-specific classification heads for multi-task ethical classification.
+The workflow includes:
+1. Text preprocessing and tokenization
+2. Transformer encoding using BERT
+3. Multi-task prediction across ethical dimensions
+4. Evaluation using Accuracy, F1-score, and ROC-AUC
+5. Interpretability analysis using Attention and SHAP
 ---
-
 ## Reproducibility
-
-All experiments were conducted using Python 3.10 and PyTorch under CUDA acceleration. Hyperparameter settings, preprocessing procedures, evaluation metrics, and ablation configurations are described in the manuscript and supplementary materials.
-
+All experiments were conducted using fixed random seeds and standardized train/validation/test splits to improve reproducibility.
+The repository includes:
+* Source code
+* Figure generation scripts
+* Experimental outputs
+* Dependency specifications
 ---
-
 ## Citation
+If you use this repository or the ETHICS benchmark, please cite:
 
-If you use this repository in your research, please cite the corresponding article:
-
-Yang B, Zhang X, Li C, Wu Y. A multi-task learning framework for ethical classification using transformer-based representations.
-
+```bibtex
+@inproceedings{hendrycks2021ethics,
+  title={Aligning AI With Shared Human Values},
+  author={Hendrycks, Dan and others},
+  booktitle={International Conference on Learning Representations (ICLR)},
+  year={2021}
+}
+```
 ---
-
 ## License
-
-This repository is provided for academic research and educational purposes.
-
+This repository is provided for academic research purposes only.
+---
+## Acknowledgments
+This work is based on the ETHICS benchmark developed by Hendrycks et al.
