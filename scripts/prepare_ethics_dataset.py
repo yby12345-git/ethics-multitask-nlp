@@ -1,20 +1,33 @@
 import pandas as pd
 from sklearn.model_selection import train_test_split
 
-# 设置文件路径
-train_data_path = "../data/ethics_raw/train.csv"  # 确保这个路径是正确的
+# Path to the raw training dataset
+train_data_path = "../data/ethics_raw/train.csv"
+
+# Load the dataset
 df = pd.read_csv(train_data_path)
 
-# 打印列名，查看实际列
+# Display column names for inspection
 print(df.columns)
 
-# 只选择 'label' 和 'input' 列，重命名为 'label' 和 'text'
-df = df[['label', 'input']]  # 只保留 'label' 和 'input' 列
-df.columns = ['label', 'text']  # 设置列名
+# Keep only the label and input columns
+df = df[['label', 'input']]
 
-# 拆分训练和验证集
-train_df, val_df = train_test_split(df, test_size=0.1)
+# Rename columns to match the training pipeline
+df.columns = ['label', 'text']
 
-# 保存处理后的数据
+# Split the dataset into training and validation sets
+train_df, val_df = train_test_split(
+    df,
+    test_size=0.1,
+    random_state=42,
+    shuffle=True
+)
+
+# Save the processed datasets
 train_df.to_csv("../data/ethics_dataset_train.csv", index=False)
 val_df.to_csv("../data/ethics_dataset_val.csv", index=False)
+
+print("Dataset preprocessing completed successfully.")
+print(f"Training samples: {len(train_df)}")
+print(f"Validation samples: {len(val_df)}")
