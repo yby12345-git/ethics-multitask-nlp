@@ -1,19 +1,118 @@
-models/
-data/
+# =========================
+# Python cache files
+# =========================
+__pycache__/
+*.py[cod]
+*$py.class
+
+# =========================
+# Virtual environments
+# =========================
+.venv/
+venv/
+env/
+ENV/
+
+# =========================
+# Jupyter Notebook files
+# =========================
+.ipynb_checkpoints/
+
+# =========================
+# IDE and editor files
+# =========================
+.vscode/
+.idea/
+*.swp
+*.swo
+.DS_Store
+Thumbs.db
+
+# =========================
+# Training logs
+# =========================
 logs/
-outputs/
-results/
+wandb/
+runs/
+lightning_logs/
+tensorboard/
+
+# =========================
+# Model checkpoints
+# =========================
+models/
+checkpoints/
 *.pt
 *.pth
 *.bin
 *.ckpt
 *.h5
+*.safetensors
+*.onnx
+
+# =========================
+# Serialized objects
+# =========================
 *.pkl
+*.pickle
 *.joblib
+
+# =========================
+# Generated outputs
+# =========================
+outputs/
+results/
+
+# =========================
+# Large downloaded datasets
+# =========================
+data/ethics_raw/
+data/cache/
+data/downloads/
+
+# Keep processed metadata and documentation files
+!data/README.md
+!data/*.csv
+!data/*.json
+!data/*.jsonl
+
+# =========================
+# Temporary files
+# =========================
+*.tmp
+*.temp
+*.part
+*.log
+
+# =========================
+# Compressed archives
+# =========================
 *.zip
 *.tar
+*.tar.gz
+*.tgz
 *.gz
 *.7z
-__pycache__/
-*.pyc
-.ipynb_checkpoints/
+*.rar
+
+# =========================
+# Build and package files
+# =========================
+build/
+dist/
+*.egg-info/
+.eggs/
+
+# =========================
+# Test and coverage files
+# =========================
+.pytest_cache/
+.coverage
+coverage.xml
+htmlcov/
+
+# =========================
+# Operating-system files
+# =========================
+.DS_Store
+Thumbs.db
