@@ -1,109 +1,239 @@
 # Ethics Multi-task NLP
+
 ## Overview
-This repository contains the implementation of a multi-task transformer framework for ethical text classification and interpretability analysis.
-The framework is designed to jointly model multiple ethical reasoning dimensions derived from the ETHICS benchmark, including:
-* Commonsense morality
-* Justice
-* Deontology
-* Virtue ethics
-* Utilitarianism
-The proposed framework integrates:
-* Multi-task learning
-* Transformer-based representations (BERT)
-* Attention visualization
-* SHAP interpretability analysis
+
+This repository contains the official implementation of a transformer-based multi-task learning framework for ethical text classification and model interpretability analysis.
+
+The proposed framework jointly learns multiple ethical reasoning tasks derived from the ETHICS benchmark while providing interpretable predictions through attention visualization and SHAP-based feature attribution.
+
+The supported ethical reasoning tasks include:
+
+- Commonsense Morality
+- Justice
+- Deontology
+- Virtue Ethics
+- Utilitarianism
+
+The framework integrates:
+
+- Multi-task learning
+- Transformer-based language representations (BERT)
+- Shared feature extraction
+- Task-specific classification heads
+- Attention visualization
+- SHAP interpretability analysis
+
 ---
-## Dataset Information
-The experiments are based on the ETHICS benchmark proposed by Hendrycks et al.
-Original ETHICS dataset repository:
+
+# Repository Structure
+
+```text
+.
+├── data/
+│   ├── README_DATASET.txt
+│   ├── ethics_dataset_train.csv
+│   ├── ethics_dataset_val.csv
+│   └── ...
+│
+├── scripts/
+│   ├── train_multitask_bert.py
+│   ├── train_single_task_bert.py
+│   ├── evaluate_model.py
+│   ├── plot_figure5_clean.py
+│   └── ...
+│
+├── outputs/
+│   ├── figures/
+│   ├── predictions/
+│   └── ...
+│
+├── results/
+│
+├── models/
+│
+├── requirements.txt
+├── LICENSE
+└── README.md
+```
+
+---
+
+# Dataset
+
+The experiments are based on the publicly available **ETHICS benchmark** introduced by Hendrycks et al.
+
+Official repository:
+
 https://github.com/hendrycks/ethics
-The dataset used in this study was reconstructed from the publicly available benchmark resources, annotation schema, and task definitions provided in the official ETHICS repository and publication.
+
+The dataset used in this project was reconstructed from the publicly available benchmark resources, annotation schema, and task definitions provided by the original authors.
+
 The reconstructed dataset preserves:
-* Ethical task categories
-* Annotation schema
-* Label structure
-Due to licensing and third-party data considerations, the original dataset is not redistributed in this repository.
-Additional dataset description is provided in:
+
+- Ethical reasoning categories
+- Annotation schema
+- Label definitions
+- Evaluation protocol
+
+The original ETHICS dataset is **not redistributed** in this repository due to licensing and third-party data considerations.
+
+Additional dataset information is available in
+
 ```text
 data/README_DATASET.txt
 ```
+
 ---
-## Code Information
-Main project structure:
-```text
-scripts/                  training and evaluation scripts
-models/                   saved model checkpoints
-outputs/                  generated predictions and figures
-results/                  experimental results
-data/                     reconstructed dataset information
-```
-Important files:
-```text
-plot_figure5_clean.py     Figure generation script
-requirements.txt          Python dependency list
-README.md                 Project description
-```
----
-## Requirements
-The project was implemented using:
-* Python 3.10
-* PyTorch
-* Transformers
-* NumPy
-* Pandas
-* Scikit-learn
-* Matplotlib
-* SHAP
-Install dependencies using:
+
+# Requirements
+
+The experiments were conducted using the following software environment.
+
+| Package | Version |
+|----------|---------|
+| Python | 3.10 |
+| PyTorch | 2.x |
+| Transformers | 4.x |
+| Datasets | latest |
+| NumPy | latest |
+| Pandas | latest |
+| Scikit-learn | latest |
+| Matplotlib | latest |
+| SHAP | latest |
+
+Install all dependencies using
+
 ```bash
 pip install -r requirements.txt
 ```
+
 ---
-## Usage Instructions
-Example training command:
+
+# Training
+
+Train the proposed multi-task BERT model
+
 ```bash
 python train_multitask_bert.py
 ```
-Example evaluation command:
+
+Train an individual single-task baseline
+
+```bash
+python train_single_task_bert.py
+```
+
+---
+
+# Evaluation
+
+Evaluate the trained model
+
 ```bash
 python evaluate_model.py
 ```
-Example figure generation command:
+
+---
+
+# Figure Generation
+
+Generate all figures reported in the manuscript
+
 ```bash
 python plot_figure5_clean.py
 ```
+
+The generated figures are automatically saved in
+
+```text
+outputs/
+```
+
+including
+
+- PNG
+- PDF
+- SVG
+
+formats.
+
 ---
-## Methodology
-The proposed framework uses a shared BERT encoder combined with task-specific classification heads for multi-task ethical classification.
-The workflow includes:
-1. Text preprocessing and tokenization
-2. Transformer encoding using BERT
-3. Multi-task prediction across ethical dimensions
-4. Evaluation using Accuracy, F1-score, and ROC-AUC
-5. Interpretability analysis using Attention and SHAP
+
+# Methodology
+
+The proposed framework consists of the following stages.
+
+1. Text preprocessing
+2. Tokenization using BERT tokenizer
+3. Shared transformer encoding
+4. Task-specific classification heads
+5. Multi-task optimization
+6. Performance evaluation
+7. Attention visualization
+8. SHAP-based interpretability analysis
+
+Performance is evaluated using
+
+- Accuracy
+- Precision
+- Recall
+- F1-score
+- ROC-AUC
+
 ---
-## Reproducibility
-All experiments were conducted using fixed random seeds and standardized train/validation/test splits to improve reproducibility.
-The repository includes:
-* Source code
-* Figure generation scripts
-* Experimental outputs
-* Dependency specifications
+
+# Reproducibility
+
+To improve experimental reproducibility,
+
+- fixed random seeds are used throughout training;
+- standardized train/validation/test splits are adopted;
+- all figures are generated directly from the experimental outputs;
+- complete source code is provided;
+- dependency versions are documented.
+
+The repository contains
+
+- source code
+- preprocessing scripts
+- training scripts
+- evaluation scripts
+- figure generation scripts
+- dependency specifications
+
 ---
-## Citation
-If you use this repository or the ETHICS benchmark, please cite:
+
+# Citation
+
+If you use this repository, please cite both this repository and the original ETHICS benchmark.
 
 ```bibtex
 @inproceedings{hendrycks2021ethics,
   title={Aligning AI With Shared Human Values},
   author={Hendrycks, Dan and others},
-  booktitle={International Conference on Learning Representations (ICLR)},
+  booktitle={International Conference on Learning Representations},
   year={2021}
 }
 ```
+
 ---
-## License
-This repository is provided for academic research purposes only.
+
+# License
+
+This project is released under the **MIT License**.
+
+See the LICENSE file for details.
+
 ---
-## Acknowledgments
-This work is based on the ETHICS benchmark developed by Hendrycks et al.
+
+# Acknowledgments
+
+This work builds upon the ETHICS benchmark developed by Hendrycks et al.
+
+The authors gratefully acknowledge the creators of the ETHICS benchmark for making the dataset and benchmark publicly available to the research community.
+
+---
+
+# Contact
+
+For questions regarding this repository, please open an issue on GitHub or contact the corresponding author listed in the associated manuscript.
